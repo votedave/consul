@@ -58,7 +58,7 @@ describe "Admin budgets", :admin do
       budget_single = create(:budget, :accepting)
       budget_multiple = create(:budget, :balloting)
 
-      heading = create(:budget_heading, budget: budget_single)
+      create(:budget_heading, budget: budget_single)
       create(:budget_heading, budget: budget_multiple)
       create(:budget_heading, budget: budget_multiple)
 
@@ -66,7 +66,6 @@ describe "Admin budgets", :admin do
 
       within "#budget_#{budget_single.id}" do
         expect(page).to have_content(budget_single.name)
-        expect(page).to have_content(heading.name)
         expect(page).to have_content("Accepting projects")
         expect(page).to have_content("Single heading")
         expect(page).to have_content("(2/9)")
@@ -77,7 +76,6 @@ describe "Admin budgets", :admin do
 
       within "#budget_#{budget_multiple.id}" do
         expect(page).to have_content(budget_multiple.name)
-        expect(page).to have_link("Edit headings groups")
         expect(page).to have_content("Voting projects")
         expect(page).to have_content("Multiple headings")
         expect(page).to have_content("(7/9)")
