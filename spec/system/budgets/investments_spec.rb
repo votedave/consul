@@ -1044,12 +1044,12 @@ describe "Budget Investments" do
 
       visit budget_investments_path(budget, heading_id: heading.id)
 
-      expect(page).not_to have_link("Check and confirm my ballot")
+      expect(page).not_to have_link("Submit my ballot")
       expect(page).not_to have_css("#progress_bar")
 
       within("#sidebar") do
         expect(page).not_to have_content("My ballot")
-        expect(page).not_to have_link("Check and confirm my ballot")
+        expect(page).not_to have_link("Submit my ballot")
       end
     end
 
@@ -1684,12 +1684,12 @@ describe "Budget Investments" do
 
       visit budget_investments_path(budget, heading_id: heading.id)
 
-      expect(page).to have_link("Check and confirm my ballot")
+      expect(page).to have_link("Submit my ballot")
       expect(page).to have_css("#progress_bar")
 
       within("#sidebar") do
         expect(page).to have_content("My ballot")
-        expect(page).to have_link("Check and confirm my ballot")
+        expect(page).to have_link("Submit my ballot")
       end
     end
 
