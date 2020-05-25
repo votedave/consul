@@ -46,5 +46,6 @@ Capybara.register_driver :headless_chrome do |app|
 end
 
 Capybara.exact = true
+Capybara.disable_animation = true
 
 OmniAuth.config.test_mode = true
