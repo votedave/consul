@@ -65,6 +65,8 @@ es:
     select_order: Ordenar por
     show:
       return_to_commentable: "Volver a "
+    delete_comment: "Borrar comentario"
+    confirm_delete_comment: "¿Estás seguro/a? Esta acción borrará este comentario. No puedes deshacer esta acción."
   comments_helper:
     comment_button: Publicar comentario
     comment_link: Comentar

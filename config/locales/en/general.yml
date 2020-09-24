@@ -65,6 +65,8 @@ en:
     select_order: Sort by
     show:
       return_to_commentable: "Go back to "
+    delete_comment: "Delete comment"
+    confirm_delete_comment: "Are you sure? This action will delete this comment. You can't undo this action."
   comments_helper:
     comment_button: Publish comment
     comment_link: Comment
