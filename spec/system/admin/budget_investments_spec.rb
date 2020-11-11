@@ -123,7 +123,7 @@ describe "Admin budget investments", :admin do
       expect(page).to have_link("Change name")
       expect(page).to have_link("Plant trees")
 
-      select "Central Park", from: "heading_id"
+      select "Parks: Central Park", from: "heading_id"
       click_button "Filter"
 
       expect(page).not_to have_link("Realocate visitors")
@@ -1062,7 +1062,7 @@ describe "Admin budget investments", :admin do
 
       fill_in "Title", with: "Potatoes"
       fill_in "Description", with: "Carrots"
-      select "#{budget_investment.group.name}: Barbate", from: "budget_investment[heading_id]"
+      select "Barbate", from: "budget_investment[heading_id]"
       uncheck "budget_investment_incompatible"
       check "budget_investment_selected"
 
