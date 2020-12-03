@@ -1493,6 +1493,26 @@ table {
   }
 }
 
+.admin .groups {
+  section {
+    header {
+      display: flex;
+
+      .table-actions {
+        margin-top: rem-calc(26);
+
+        > :first-child {
+          margin-left: rem-calc(3);;
+        }
+
+        > :not(:first-child) {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+}
+
 // 11. Newsletters
 // -----------------
 

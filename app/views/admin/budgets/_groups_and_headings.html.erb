@@ -1,15 +1,18 @@
 <% @budget.groups.each do |group| %>
-  <div id="<%= "group_#{group.id}" %>">
+  <div id="<%= "group_#{group.id}" %>" class="groups">
     <%= link_to t("admin.budgets.edit.groups_and_headings.add_heading"),
               new_admin_budget_group_heading_path(@budget, group),
               class: "button hollow float-right margin-top add" %>
 
-    <h3 class="inline-block"><%= group.name %></h3>
-    <%# TODO: Add styles to render correctly actions %>
-    <%= render Admin::TableActionsComponent.new(group,
-      edit_text: t("admin.budgets.edit.groups_and_headings.edit_group", name: group.name),
-      destroy_text: t("admin.budgets.edit.groups_and_headings.delete_group", name: group.name)
-      ) %>
+    <section>
+      <header>
+        <h3 class="inline-block"><%= group.name %></h3>
+        <%= render Admin::TableActionsComponent.new(group,
+          edit_text: t("admin.budgets.edit.groups_and_headings.edit_group", name: group.name),
+          destroy_text: t("admin.budgets.edit.groups_and_headings.delete_group", name: group.name)
+          ) %>
+      </header>
+    </section>
 
     <p class="help-text">
       <%= t("admin.budgets.edit.groups_and_headings.max_number_headings") %>
@@ -41,8 +44,7 @@
             <td class="text-center">
               <%= heading.allow_custom_content ? t("admin.shared.true_value") : t("admin.shared.false_value") %>
             </td>
-            <td class="text-right">
-              <%# TODO: Add styles to render correctly actions %>
+            <td>
               <%= render Admin::TableActionsComponent.new(heading,
                 edit_text: t("admin.budgets.edit.groups_and_headings.edit_heading", name: heading.name),
                 destroy_text: t("admin.budgets.edit.groups_and_headings.delete_heading", name: heading.name)
