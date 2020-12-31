@@ -11,7 +11,7 @@
     <% if taggable.tags_count_out_of_limit(limit) > 0 %>
       <li class="inline-block">
         <%= link_to "#{taggable.tags_count_out_of_limit(limit)}+",
-                    taggable_path(taggable) %>
+                    polymorphic_path(taggable) %>
       </li>
     <% end %>
   </ul>
