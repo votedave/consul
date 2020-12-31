@@ -15,6 +15,25 @@ module ActionDispatch::Routing::UrlFor
     end
   end
 
+  def polymorphic_index(resource, options = {})
+    resolve = resolve_for(resource)
+
+    if resolve
+      resolve_without_resource = resolve[0..-2]
+
+      if resolve_without_resource.last.is_a?(Symbol)
+        resolve_without_resource[-1] = resolve_without_resource.last.to_s.pluralize.to_sym
+        polymorphic_path(resolve_without_resource, options)
+      else
+        polymorphic_path([*resolve_without_resource, resource.class])
+      end
+    elsif resource.is_a?(String)
+      polymorphic_path(resource.constantize, options)
+    else
+      polymorphic_path(resource.class, options)
+    end
+  end
+
   def admin_polymorphic_path(resource, options = {})
     if %w[Budget::Group Budget::Heading Poll::Booth Poll::BoothAssignment Poll::Officer
           Poll::Question Poll::Question::Answer::Video Poll::Shift].include?(resource.class.name)

@@ -47,6 +47,57 @@ describe "Polymorphic routes" do
     end
   end
 
+  describe "polymorphic index" do
+    include ActionDispatch::Routing::UrlFor
+
+    it "routes debates" do
+      debate = create(:debate)
+
+      expect(polymorphic_index(debate)).to eq debates_path
+    end
+
+    it "routes proposals" do
+      proposal = create(:proposal)
+
+      expect(polymorphic_index(proposal)).to eq proposals_path
+    end
+
+    it "routes legislation proposals" do
+      process = create(:legislation_process)
+      proposal = create(:legislation_proposal, process: process)
+
+      expect(polymorphic_index(proposal)).to eq legislation_process_proposals_path(process)
+    end
+
+    it "routes investments" do
+      budget = create(:budget)
+      investment = create(:budget_investment, budget: budget)
+
+      expect(polymorphic_index(investment)).to eq budget_investments_path(budget)
+    end
+
+    it "routes class names" do
+      expect(polymorphic_index("Debate")).to eq debates_path
+    end
+
+    it "routes new records" do
+      expect(polymorphic_index(Proposal.new)).to eq proposals_path
+    end
+
+    it "routes nested new records" do
+      budget = create(:budget)
+
+      expect(polymorphic_index(Budget::Investment.new(budget: budget))).to eq budget_investments_path(budget)
+    end
+
+    it "accepts extra parameters" do
+      budget = create(:budget)
+      investment = create(:budget_investment, budget: budget)
+
+      expect(polymorphic_index(investment, search: "New")).to eq budget_investments_path(budget, search: "New")
+    end
+  end
+
   describe "admin_polymorphic_path" do
     include ActionDispatch::Routing::UrlFor
 
