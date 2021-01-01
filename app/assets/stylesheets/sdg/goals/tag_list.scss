@@ -1,0 +1,12 @@
+.sdg-goal-tag-list {
+  list-style: none;
+  margin-left: 0;
+
+  li {
+    display: inline-block;
+
+    &:not(:last-child) {
+      padding-right: 1ch;
+    }
+  }
+}
