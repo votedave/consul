@@ -1,0 +1,43 @@
+<div class="sdg-goal-stats">
+
+  <h3><%= goal.code_and_title %></h3>
+
+  <div class="stats-numbers">
+
+    <div class="small-12 medium-4 column">
+      <p>
+        <%= t("sdg.stats.polls") %> <br><span class="number"><%= goal.polls.count %></span>
+      </p>
+    </div>
+
+    <div class="small-12 medium-4 column">
+      <p>
+        <%= t("sdg.stats.proposals") %> <br><span class="number"><%= goal.proposals.count %></span>
+      </p>
+    </div>
+
+    <div class="small-12 medium-4 column">
+      <p>
+        <%= t("sdg.stats.debates") %> <br><span class="number"><%= goal.debates.count %></span>
+      </p>
+    </div>
+
+    <div class="small-12 medium-4 column">
+      <p class="sent">
+        <%= t("sdg.stats.budget_investments.sent") %> <br><span class="number"><%= goal.budget_investments.count %></span>
+      </p>
+    </div>
+
+    <div class="small-12 medium-4 column">
+      <p class="approved featured">
+        <%= t("sdg.stats.budget_investments.approved") %> <br><span class="number"><%= goal.budget_investments.winners.count %></span>
+      </p>
+    </div>
+
+    <div class="small-12 medium-4 column">
+      <p class="amount featured">
+        <%= t("sdg.stats.budget_investments.amount") %> <br><span class="number"><%= approved_budget %></span>
+      </p>
+    </div>
+  </div>
+</div>

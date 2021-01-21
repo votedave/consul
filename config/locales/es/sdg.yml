@@ -439,6 +439,15 @@ es:
       hint: "Puedes introducir el código de un objetivo/meta específico o un texto para encontrar uno"
       placeholder: "Escribe las etiquetas que desees"
       remove_tag: "Eliminar"
+    stats:
+      budget_investments:
+        amount: "Presupuesto"
+        approved: "Proyectos de inversión ganadores"
+        sent: "Proyectos de inversión enviados"
+      debates: "Debates"
+      polls: "Votaciones"
+      proposals: "Propuestas"
+      title: "Objetivos del Desarrollo Sostenible - Estadísticas"
     targets:
       filter:
         link: "Ver %{resources} de la meta %{code}"
