@@ -1,9 +1,7 @@
 <div id="<%= dom_id(process) %>" class="legislation clear">
   <div class="column row legislation-text">
     <div class="small-12 medium-8 column">
-      <div class="legislation-text">
-        <h3><%= link_to process.title, process %></h3>
-      </div>
+      <h3><%= link_to process.title, process %></h3>
     </div>
 
     <div class="small-12 medium-4 column">
@@ -17,6 +15,8 @@
     <div class="small-12 medium-11 column end">
       <%= markdown(process.summary.present? ? process.summary : first_paragraph(process.description)) %>
     </div>
+
+    <%= render SDG::TagListComponent.new(process, limit: 5) %>
   </div>
 
   <% if process.enabled_phases_and_publications_count.positive? %>

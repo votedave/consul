@@ -69,10 +69,14 @@
 }
 
 .legislation-text {
-  margin-bottom: 1rem;
+
+  > * {
+    @include grid-column-gutter;
+  }
 
   h3 a {
     color: $black;
+    margin-bottom: 1rem;
   }
 }
 
