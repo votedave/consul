@@ -3,10 +3,13 @@
 <div class="sdg-goal-show">
   <%= back_link_to sdg_goals_path %>
 
-  <article class="sdg-goal sdg-goal-<%= goal.code %>">
+  <article class="sdg-goal sdg-goal-<%= code %>">
     <header>
       <h1><%= heading %></h1>
     </header>
+    <section>
+      <%= long_description %>
+    </section>
   </article>
 
   <%= render Widget::Feeds::ParticipationComponent.new(feeds) %>
