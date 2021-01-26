@@ -63,6 +63,23 @@
         }
       }
     }
+
+    > section {
+      border-bottom: 1px solid #eee;
+
+      .goal-description {
+        height: 100%;
+
+        &.short {
+          height: rem-calc(150);
+          overflow: hidden;
+        }
+      }
+
+      .margin {
+        text-align: center;
+      }
+    }
   }
 
   .feed-processes {

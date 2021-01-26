@@ -25,5 +25,9 @@ describe SDG::Goals::ShowComponent, type: :component do
 
     expect(page).to have_css "#description_goal_#{goal_1.code}"
     expect(page).to have_content "Globally, the number of people living in extreme poverty declined from 36 per cent in 1990 to 10 "
+    expect(page).to have_css "#read_more_goal_#{goal_1.code}"
+    expect(page).to have_content "Read more about No Poverty"
+    expect(page).to have_css "#read_less_goal_#{goal_1.code}.hide"
+    expect(page).to have_content "Read less about No Poverty"
   end
 end
