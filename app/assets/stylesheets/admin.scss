@@ -59,7 +59,7 @@ $sidebar-active: #f4fcd0;
 
   .top-bar {
     background: #fff !important;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid $border-gray;
     color: #000;
     height: auto;
     padding-top: $line-height / 2;

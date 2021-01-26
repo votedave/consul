@@ -2462,7 +2462,7 @@ table {
 
 .recommended-index {
   background: #fafafa;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid $border-gray;
   margin-bottom: $line-height;
   margin-top: rem-calc(-25);
   padding: $line-height 0 $line-height / 2;
@@ -2580,7 +2580,7 @@ table {
 
 .document-divider {
   background: #fafafa;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid $border-gray;
 }
 
 // 21. Related content

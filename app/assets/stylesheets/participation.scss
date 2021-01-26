@@ -912,7 +912,7 @@
 
 .help-header {
   background: #fafafa;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid $border-gray;
   margin-top: -$line-height;
   margin-bottom: $line-height;
   padding-bottom: $line-height / 2;
@@ -940,7 +940,7 @@
   }
 
   .button {
-    background: #eee;
+    background: $border-gray;
     height: rem-calc(36);
     margin-bottom: 0;
     padding: $line-height / 4;
@@ -1727,12 +1727,12 @@
 
 .poll-more-info,
 .poll-more-info-answers {
-  border-top: 1px solid #eee;
+  border-top: 1px solid $border-gray;
 }
 
 .poll-more-info-answers {
   background: #fafafa;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid $border-gray;
 
   .column:nth-child(odd) {
     border-right: 2px solid $text;
@@ -1780,7 +1780,7 @@
 }
 
 .orbit-caption {
-  background: #eee;
+  background: $border-gray;
   color: $text;
 }
 
@@ -1928,7 +1928,7 @@
 }
 
 .section-title-divider {
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid $border-gray;
   color: #000;
   margin: $line-height 0;
 
