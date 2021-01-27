@@ -1,0 +1,10 @@
+<div class="tabs-panel" id="tab-<%= type %>-targets">
+  <section class="<%= type %>-targets">
+    <dl>
+      <% targets.sort.each do |target| %>
+        <dt><%= target.code %><dt>
+        <dd><%= target.title %><dd>
+      <% end %>
+    </dl>
+  </section>
+</div>
