@@ -1,0 +1,13 @@
+<ul class="tabs" id="target_tabs" data-deep-link="true" data-tabs>
+  <li class="tabs-title">
+    <%= link_to SDG::Target.model_name.human(count: 2).upcase_first, "#tab-global-targets" %>
+  </li>
+  <li class="tabs-title">
+    <%= link_to SDG::LocalTarget.model_name.human(count: 2).upcase_first, "#tab-local-targets" %>
+  </li>
+</ul>
+
+<div class="tabs-content" data-tabs-content="target_tabs">
+  <%= render SDG::Goals::TargetComponent.new(local_targets) %>
+  <%= render SDG::Goals::TargetComponent.new(global_targets) %>
+</div>
