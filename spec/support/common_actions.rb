@@ -15,6 +15,10 @@ module CommonActions
   include Verifications
   include Votes
 
+  def app_host
+    "#{Capybara.app_host}:#{Capybara::Server.ports.values.last}"
+  end
+
   def fill_in_signup_form(email = "manuela@consul.dev", password = "judgementday")
     fill_in "user_username",              with: "Manuela Carmena #{rand(99999)}"
     fill_in "user_email",                 with: email
@@ -31,10 +35,10 @@ module CommonActions
   def fill_in_proposal
     fill_in "Proposal title", with: "Help refugees"
     fill_in "Proposal summary", with: "In summary, what we want is..."
-    fill_in "Proposal text", with: "This is very important because..."
-    fill_in "proposal_video_url", with: "https://www.youtube.com/watch?v=yPQfcG-eimk"
-    fill_in "proposal_responsible_name", with: "Isabel Garcia"
-    check "proposal_terms_of_service"
+    fill_in_ckeditor "Proposal text", with: "This is very important because..."
+    fill_in "External video URL", with: "https://www.youtube.com/watch?v=yPQfcG-eimk"
+    fill_in "Full name of the person submitting the proposal", with: "Isabel Garcia"
+    check "I agree to the Privacy Policy and the Terms and conditions of use"
   end
 
   def set_officing_booth(booth = nil)

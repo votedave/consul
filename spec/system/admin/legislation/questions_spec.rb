@@ -3,16 +3,6 @@ require "rails_helper"
 describe "Admin legislation questions", :admin do
   let!(:process) { create(:legislation_process, title: "An example legislation process") }
 
-  context "Feature flag" do
-    before do
-      Setting["process.legislation"] = nil
-    end
-
-    scenario "Disabled with a feature flag" do
-      expect { visit admin_legislation_process_questions_path(process) }.to raise_exception(FeatureFlags::FeatureDisabled)
-    end
-  end
-
   context "Index" do
     scenario "Displaying legislation process questions" do
       create(:legislation_question, process: process, title: "Question 1")
@@ -36,8 +26,6 @@ describe "Admin legislation questions", :admin do
         click_link "Collaborative Legislation"
       end
 
-      click_link "All"
-
       within("tr", text: "An example legislation process") { click_link "Edit" }
       click_link "Debate"
 
@@ -51,7 +39,7 @@ describe "Admin legislation questions", :admin do
   end
 
   context "Update" do
-    scenario "Valid legislation question", :js do
+    scenario "Valid legislation question" do
       create(:legislation_question, title: "Question 2", process: process)
 
       visit admin_root_path
@@ -76,7 +64,7 @@ describe "Admin legislation questions", :admin do
   end
 
   context "Delete" do
-    scenario "Legislation question", :js do
+    scenario "Legislation question" do
       create(:legislation_question, title: "Question 1", process: process)
       question = create(:legislation_question, title: "Question 2", process: process)
       question_option = create(:legislation_question_option, question: question, value: "Yes")
@@ -110,7 +98,7 @@ describe "Admin legislation questions", :admin do
       end
     end
 
-    scenario "Edit an existing option", :js do
+    scenario "Edit an existing option" do
       create(:legislation_question_option, question: question, value: "Original")
 
       visit edit_question_url
@@ -123,7 +111,7 @@ describe "Admin legislation questions", :admin do
       expect(page).to have_field(field_en[:id], with: "Changed")
     end
 
-    scenario "Remove an option", :js do
+    scenario "Remove an option" do
       create(:legislation_question_option, question: question, value: "Yes")
       create(:legislation_question_option, question: question, value: "No")
 
@@ -149,7 +137,7 @@ describe "Admin legislation questions", :admin do
         question.update!(title_en: "Title in English", title_es: "Título en Español")
       end
 
-      scenario "Add translation for question option", :js do
+      scenario "Add translation for question option" do
         visit edit_question_url
 
         click_on "Add option"
@@ -170,7 +158,7 @@ describe "Admin legislation questions", :admin do
         expect(page).to have_field(field_es[:id], with: "Opción 1")
       end
 
-      scenario "Add new question option after changing active locale", :js do
+      scenario "Add new question option after changing active locale" do
         visit edit_question_url
 
         select "Español", from: :select_language

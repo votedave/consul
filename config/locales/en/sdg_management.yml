@@ -6,12 +6,17 @@ en:
       title: "SDG content"
     homepage:
       title: "Homepage configuration"
+      header:
+        create: "Create header"
+        no_cards: "There is no header"
+        title: "Header"
       create_card: "Create %{phase} card"
       no_cards: "There are no cards for this phase"
     menu:
       budget_investments: "Participatory budgets"
       debates: "Debates"
-      legislation_processes: "Collaborative legislation"
+      legislation_processes: "Legislation processes"
+      legislation_proposals: "Legislation proposals"
       polls: "Polls"
       proposals: "Proposals"
       sdg_content: "Goals and Targets"

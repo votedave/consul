@@ -4,17 +4,17 @@ describe "Admin managers", :admin do
   let!(:user) { create(:user) }
   let!(:manager) { create(:manager) }
 
-  before do
-    visit admin_managers_path
-  end
-
   scenario "Index" do
+    visit admin_managers_path
+
     expect(page).to have_content manager.name
     expect(page).to have_content manager.email
     expect(page).not_to have_content user.name
   end
 
-  scenario "Create Manager", :js do
+  scenario "Create Manager" do
+    visit admin_managers_path
+
     fill_in "search", with: user.email
     click_button "Search"
 
@@ -26,7 +26,9 @@ describe "Admin managers", :admin do
   end
 
   scenario "Delete Manager" do
-    click_link "Delete"
+    visit admin_managers_path
+
+    accept_confirm { click_link "Delete" }
 
     within("#managers") do
       expect(page).not_to have_content manager.name
@@ -86,7 +88,7 @@ describe "Admin managers", :admin do
       fill_in "Search user by name or email", with: manager2.email
       click_button "Search"
 
-      click_link "Delete"
+      accept_confirm { click_link "Delete" }
 
       expect(page).to have_content(manager1.email)
       expect(page).not_to have_content(manager2.email)

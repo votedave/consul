@@ -7,6 +7,7 @@ es:
     name: Nombre
     email: Email
     description: Descripción
+    related_sdg_list: Objetivos y Metas
   activerecord:
     models:
       activity:
@@ -229,6 +230,7 @@ es:
         ends_at: "Fecha de fin"
         starts_at: "Fecha de inicio"
       budget/phase/translation:
+        name: "Nombre"
         description: "Descripción"
         summary: "Resumen"
       comment:

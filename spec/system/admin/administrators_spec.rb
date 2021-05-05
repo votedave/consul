@@ -5,12 +5,11 @@ describe "Admin administrators" do
   let!(:user) { create(:user, username: "Jose Luis Balbin") }
   let!(:user_administrator) { create(:administrator, description: "admin_alias") }
 
-  before do
-    login_as(admin.user)
-    visit admin_administrators_path
-  end
+  before { login_as(admin.user) }
 
   scenario "Index" do
+    visit admin_administrators_path
+
     expect(page).to have_content user_administrator.id
     expect(page).to have_content user_administrator.name
     expect(page).to have_content user_administrator.email
@@ -18,7 +17,9 @@ describe "Admin administrators" do
     expect(page).not_to have_content user.name
   end
 
-  scenario "Create Administrator", :js do
+  scenario "Create Administrator" do
+    visit admin_administrators_path
+
     fill_in "search", with: user.email
     click_button "Search"
 
@@ -30,8 +31,10 @@ describe "Admin administrators" do
   end
 
   scenario "Delete Administrator" do
+    visit admin_administrators_path
+
     within "#administrator_#{user_administrator.id}" do
-      click_on "Delete"
+      accept_confirm { click_link "Delete" }
     end
 
     within("#administrators") do
@@ -40,8 +43,10 @@ describe "Admin administrators" do
   end
 
   scenario "Delete Administrator when its the current user" do
+    visit admin_administrators_path
+
     within "#administrator_#{admin.id}" do
-      click_on "Delete"
+      accept_confirm { click_link "Delete" }
     end
 
     within("#error") do
@@ -105,7 +110,7 @@ describe "Admin administrators" do
       fill_in "Search user by name or email", with: administrator2.email
       click_button "Search"
 
-      click_link "Delete"
+      accept_confirm { click_link "Delete" }
 
       expect(page).to have_content(administrator1.email)
       expect(page).not_to have_content(administrator2.email)

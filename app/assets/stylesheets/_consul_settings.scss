@@ -17,7 +17,8 @@ $line-height:         rem-calc(24);
 $tiny-font-size:      rem-calc(12);
 
 $brand:             #004a83;
-$dark:              darken($brand, 10%);
+$brand-secondary:   darken($brand, 10%);
+$dark:              $brand-secondary;
 
 $text:              #222;
 $text-medium:       #515151;
@@ -74,6 +75,8 @@ $input-height:      $line-height * 2;
 
 $icon-width: $line-height * 2;
 
+$off-screen-left: -1000rem;
+
 $sdg-icon-min-width: 40px;
 
 $sdg-colors: (
@@ -100,7 +103,7 @@ $sdg-colors: (
 // ---------------------------------
 
 $black: #222;
-$white: #fff;
+$white: #fdfdfd;
 
 $body-font-family: "Source Sans Pro", "Helvetica", "Arial", sans-serif !important;
 

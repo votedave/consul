@@ -1,7 +1,10 @@
-shared_examples "nested imageable" do |imageable_factory_name, path, imageable_path_arguments, fill_resource_method_name, submit_button, imageable_success_notice, has_many_images = false|
+shared_examples "nested imageable" do |imageable_factory_name, path, imageable_path_arguments,
+                                       fill_resource_method_name, submit_button, imageable_success_notice,
+                                       has_many_images = false, management: false|
   let!(:user)                { create(:user, :level_two) }
   let!(:arguments)           { {} }
   let!(:imageable)           { create(imageable_factory_name) }
+  let(:management)           { management }
 
   before do
     create(:administrator, user: user)
@@ -15,14 +18,14 @@ shared_examples "nested imageable" do |imageable_factory_name, path, imageable_p
 
   describe "at #{path}" do
     scenario "Should show new image link when imageable has not an associated image defined" do
-      login_as user
+      do_login_for user
       visit send(path, arguments)
 
       expect(page).to have_selector "#new_image_link"
     end
 
-    scenario "Should hide new image link after adding one image", :js do
-      login_as user
+    scenario "Should hide new image link after adding one image" do
+      do_login_for user
       visit send(path, arguments)
 
       click_on "Add image"
@@ -30,8 +33,8 @@ shared_examples "nested imageable" do |imageable_factory_name, path, imageable_p
       expect(page).not_to have_selector "#new_image_link"
     end
 
-    scenario "Should update nested image file name after choosing any file", :js do
-      login_as user
+    scenario "Should update nested image file name after choosing any file" do
+      do_login_for user
       visit send(path, arguments)
 
       click_link "Add image"
@@ -45,8 +48,8 @@ shared_examples "nested imageable" do |imageable_factory_name, path, imageable_p
       expect(page).to have_selector ".file-name", text: "clippy.jpg"
     end
 
-    scenario "Should update nested image file title with file name after choosing a file when no title defined", :js do
-      login_as user
+    scenario "Should update nested image file title with file name after choosing a file when no title defined" do
+      do_login_for user
       visit send(path, arguments)
 
       imageable_attach_new_file(
@@ -57,8 +60,8 @@ shared_examples "nested imageable" do |imageable_factory_name, path, imageable_p
       expect_image_has_title("clippy.jpg")
     end
 
-    scenario "Should not update nested image file title with file name after choosing a file when title already defined", :js do
-      login_as user
+    scenario "Should not update nested image file title with file name after choosing a file when title already defined" do
+      do_login_for user
       visit send(path, arguments)
 
       click_link "Add image"
@@ -78,8 +81,8 @@ shared_examples "nested imageable" do |imageable_factory_name, path, imageable_p
       end
     end
 
-    scenario "Should update loading bar style after valid file upload", :js do
-      login_as user
+    scenario "Should update loading bar style after valid file upload" do
+      do_login_for user
       visit send(path, arguments)
 
       imageable_attach_new_file(
@@ -90,8 +93,8 @@ shared_examples "nested imageable" do |imageable_factory_name, path, imageable_p
       expect(page).to have_selector ".loading-bar.complete"
     end
 
-    scenario "Should update loading bar style after invalid file upload", :js do
-      login_as user
+    scenario "Should update loading bar style after invalid file upload" do
+      do_login_for user
       visit send(path, arguments)
 
       imageable_attach_new_file(
@@ -103,8 +106,8 @@ shared_examples "nested imageable" do |imageable_factory_name, path, imageable_p
       expect(page).to have_selector ".loading-bar.errors"
     end
 
-    scenario "Should update image cached_attachment field after valid file upload", :js do
-      login_as user
+    scenario "Should update image cached_attachment field after valid file upload" do
+      do_login_for user
       visit send(path, arguments)
 
       imageable_attach_new_file(
@@ -115,8 +118,8 @@ shared_examples "nested imageable" do |imageable_factory_name, path, imageable_p
       expect_image_has_cached_attachment(".jpg")
     end
 
-    scenario "Should not update image cached_attachment field after invalid file upload", :js do
-      login_as user
+    scenario "Should not update image cached_attachment field after invalid file upload" do
+      do_login_for user
       visit send(path, arguments)
 
       imageable_attach_new_file(
@@ -128,8 +131,8 @@ shared_examples "nested imageable" do |imageable_factory_name, path, imageable_p
       expect_image_has_cached_attachment("")
     end
 
-    scenario "Should show nested image errors after invalid form submit", :js do
-      login_as user
+    scenario "Should show nested image errors after invalid form submit" do
+      do_login_for user
       visit send(path, arguments)
 
       click_link "Add image"
@@ -144,8 +147,8 @@ shared_examples "nested imageable" do |imageable_factory_name, path, imageable_p
       end
     end
 
-    scenario "Should remove nested image after valid file upload and click on remove button", :js do
-      login_as user
+    scenario "Should remove nested image after valid file upload and click on remove button" do
+      do_login_for user
       visit send(path, arguments)
 
       imageable_attach_new_file(
@@ -160,11 +163,11 @@ shared_examples "nested imageable" do |imageable_factory_name, path, imageable_p
       expect(page).not_to have_selector("#nested-image .image")
     end
 
-    scenario "Should show successful notice when resource filled correctly without any nested images", :js do
+    scenario "Should show successful notice when resource filled correctly without any nested images" do
       if has_many_images
         skip "no need to test, there are no attributes for the parent resource"
       else
-        login_as user
+        do_login_for user
         visit send(path, arguments)
 
         send(fill_resource_method_name) if fill_resource_method_name
@@ -173,8 +176,8 @@ shared_examples "nested imageable" do |imageable_factory_name, path, imageable_p
       end
     end
 
-    scenario "Should show successful notice when resource filled correctly and after valid file uploads", :js do
-      login_as user
+    scenario "Should show successful notice when resource filled correctly and after valid file uploads" do
+      do_login_for user
       visit send(path, arguments)
       send(fill_resource_method_name) if fill_resource_method_name
 
@@ -190,8 +193,8 @@ shared_examples "nested imageable" do |imageable_factory_name, path, imageable_p
       expect(page).to have_content imageable_success_notice
     end
 
-    scenario "Should show new image after successful creation with one uploaded file", :js do
-      login_as user
+    scenario "Should show new image after successful creation with one uploaded file" do
+      do_login_for user
       visit send(path, arguments)
       send(fill_resource_method_name) if fill_resource_method_name
 
@@ -216,32 +219,32 @@ shared_examples "nested imageable" do |imageable_factory_name, path, imageable_p
     if path.include? "edit"
       scenario "Should show persisted image" do
         create(:image, imageable: imageable)
-        login_as user
+        do_login_for user
         visit send(path, arguments)
 
         expect(page).to have_css ".image", count: 1
       end
 
-      scenario "Should not show add image button when image already exists", :js do
+      scenario "Should not show add image button when image already exists" do
         create(:image, imageable: imageable)
-        login_as user
+        do_login_for user
         visit send(path, arguments)
 
         expect(page).not_to have_css "a#new_image_link"
       end
 
-      scenario "Should remove nested field after remove image", :js do
+      scenario "Should remove nested field after remove image" do
         create(:image, imageable: imageable)
-        login_as user
+        do_login_for user
         visit send(path, arguments)
         click_on "Remove image"
 
         expect(page).not_to have_css ".image"
       end
 
-      scenario "Should show add image button after remove image", :js do
+      scenario "Should show add image button after remove image" do
         create(:image, imageable: imageable)
-        login_as user
+        do_login_for user
         visit send(path, arguments)
         click_on "Remove image"
 
@@ -249,6 +252,10 @@ shared_examples "nested imageable" do |imageable_factory_name, path, imageable_p
       end
     end
   end
+end
+
+def do_login_for(user)
+  common_do_login_for(user, management: management)
 end
 
 def imageable_redirected_to_resource_show_or_navigate_to

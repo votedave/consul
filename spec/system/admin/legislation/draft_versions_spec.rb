@@ -1,14 +1,6 @@
 require "rails_helper"
 
 describe "Admin legislation draft versions", :admin do
-  context "Feature flag" do
-    scenario "Disabled with a feature flag" do
-      Setting["process.legislation"] = nil
-      process = create(:legislation_process)
-      expect { visit admin_legislation_process_draft_versions_path(process) }.to raise_exception(FeatureFlags::FeatureDisabled)
-    end
-  end
-
   context "Index" do
     scenario "Displaying legislation process draft versions" do
       process = create(:legislation_process, title: "An example legislation process")
@@ -43,7 +35,7 @@ describe "Admin legislation draft versions", :admin do
 
       fill_in "Version title", with: "Version 3"
       fill_in "Changes", with: "Version 3 changes"
-      fill_in "Text", with: "Version 3 body"
+      fill_in_markdown_editor "Text", with: "Version 3 body"
 
       within("form .end") do
         click_button "Create version"
@@ -55,7 +47,7 @@ describe "Admin legislation draft versions", :admin do
   end
 
   context "Update" do
-    scenario "Valid legislation draft version", :js do
+    scenario "Valid legislation draft version" do
       process = create(:legislation_process, title: "An example legislation process")
       create(:legislation_draft_version, title: "Version 1", process: process)
 
@@ -83,7 +75,7 @@ describe "Admin legislation draft versions", :admin do
     end
   end
 
-  context "Changing content with the markdown editor", :js do
+  context "Changing content with the markdown editor" do
     let(:prompt) { "You've edited the text without saving it. Do you confirm to leave the page?" }
     let(:version) { create(:legislation_draft_version, body: "Version 1") }
     let(:path) do

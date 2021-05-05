@@ -6,8 +6,13 @@ class SDG::GoalsController < ApplicationController
   def index
     @goals = @goals.order(:code)
     @phases = SDG::Phase.accessible_by(current_ability).order(:kind)
+    @header = WebSection.find_by!(name: "sdg").header
   end
 
   def show
+  end
+
+  def help
+    @goals = @goals.order(:code)
   end
 end

@@ -36,12 +36,16 @@ es:
           budgets: Presupuestos participativos
           help_page: Página de ayuda
           sdg: ODS
+      create:
+        notice: "Banner creado correctamente"
       edit:
         editing: Editar el banner
         form:
           submit_button: Guardar cambios
       new:
         creating: Crear banner
+      update:
+        notice: "Banner actualizado correctamente"
     activity:
       show:
         action: Acción
@@ -63,16 +67,24 @@ es:
         type: Tipo
         no_activity: No hay actividad de moderadores.
     budgets:
+      actions:
+        preview: "Previsualizar presupuesto"
       index:
         title: Presupuestos participativos
         new_link: Crear nuevo presupuesto
         filter: Filtro
         filters:
+          all: Todos
           open: Abiertos
           finished: Terminados
+        help: "Los presupuestos participativos permiten que los ciudadanos propongan y decidan de manera directa cómo gastar parte del presupuesto, con un seguimiento y evaluación riguroso de las propuestas por parte de la institución."
         budget_investments: Gestionar proyectos de gasto
+        table_completed: Completado
+        table_draft: "Borrador"
+        table_duration: "Duración"
         table_name: Nombre
         table_phase: Fase
+        table_phase_progress: "(%{current_phase_number}/%{total_phases})"
         edit_groups: Editar grupos de partidas
         edit_budget: Editar presupuesto
         admin_ballots: Gestionar urnas
@@ -81,11 +93,16 @@ es:
         notice: '¡Presupuestos participativos creados con éxito!'
       update:
         notice: Presupuestos participativos actualizados
+      publish:
+        notice: "Presupuestos participativos actualizados"
       edit:
         title: Editar presupuestos participativos
+        drafting: "Este presupuesto participativo está en modo borrador, solo los administradores pueden verlo desde la parte pública de la página. Una vez se haya publicado, no se podrá volver a poner en modo borrador otra vez."
+        publish: "Publicar presupuesto"
         delete: Eliminar presupuesto
         phase: Fase
-        dates: Fechas
+        phases_caption: "Fases"
+        duration: "Duración"
         enabled: Habilitada
         actions: Acciones
         edit_phase: Editar fase
@@ -101,6 +118,11 @@ es:
           other: "%{count} evaluadores seleccionados"
         empty_administrators: "No hay administradores"
         empty_valuators: "No hay evaluadores"
+        name_description: "Este es el nombre del presupuesto participativo usado en la cabecera y tarjetas cuando éste está activo"
+        info:
+          budget_settings: "Configuración genérica del presupuesto participativo"
+          phases_settings: "Configuración de las fases"
+          staff_settings: "Administradores y Evaluadores asigandos al presupuesto"
       destroy:
         success_notice: Presupuesto eliminado correctamente
         unable_notice: No se puede eliminar un presupuesto con proyectos asociados
@@ -133,6 +155,7 @@ es:
         submit: "Guardar grupo"
       index:
         back: "Volver a presupuestos"
+        help: "Los grupos sirven para organizar las partidas del presupuesto. Después de que un grupo sea creado y éste contenga partidas, es posible determinar el número de partidas a las que un usuario puede votar por grupo."
     budget_headings:
       no_headings: "No hay partidas."
       amount:
@@ -155,12 +178,17 @@ es:
         submit: "Guardar partida"
       index:
         back: "Volver a grupos"
+        help: "Las partidas sirven para dividir el dinero del presupuesto participativo. Aquí puedes ir añadiendo partidas para cada grupo y establecer la cantidad de dinero que se gastará en cada partida."
     budget_phases:
       edit:
-        summary_help_text: Este texto informará al usuario sobre la fase. Para mostrarlo aunque la fase no esté activa, marca la opción de más abajo.
         description_help_text: Este texto aparecerá en la cabecera cuando la fase esté activa
+        duration: "Duración de la fase"
+        duration_description: "El período de tiempo que esta fase estará activa."
         enabled_help_text: Esta fase será pública en el calendario de fases del presupuesto y estará activa para otros propósitos
+        name_help_text: "Este es el título de la fase que los usuarios leerán en el encabezado cuando la fase esté activa."
         save_changes: Guardar cambios
+      index:
+        help: "Los presupuestos participativos tienen distintas fases. Aquí puedes habilitar o deshabilitar fases y también personalizar cada una de las fases."
     budget_investments:
       index:
         heading_filter_all: Todas las partidas
@@ -1265,6 +1293,7 @@ es:
           budget_investments: "Buscar proyectos por título, descripción o partida"
           debates: "Buscar debates por título o descripción"
           legislation_processes: "Buscar procesos por título o descripción"
+          legislation_proposals: "Buscar propuestas por título o descripción"
           local_census_records: "Búsqueda por número de documento"
           organizations: "Nombre, email o teléfono"
           poll_officers: "Buscar presidentes de mesa"
